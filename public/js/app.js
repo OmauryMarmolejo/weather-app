@@ -12,19 +12,17 @@ weatherForm.addEventListener("submit", (event) => {
     return console.log("Please add a location");
   }
 
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          console.log(data.error);
-          messageTwo.textContent = `${data.error}`;
-        } else {
-          messageTwo.textContent = `${data.location} ${data.forecast}`;
-          console.log(data.forecast);
-          console.log(data.location);
-        }
-        messageOne.textContent = "";
-      });
-    }
-  );
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        console.log(data.error);
+        messageTwo.textContent = `${data.error}`;
+      } else {
+        messageTwo.textContent = `${data.location} ${data.forecast}`;
+        console.log(data.forecast);
+        console.log(data.location);
+      }
+      messageOne.textContent = "";
+    });
+  });
 });
